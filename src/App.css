@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+body{
+  background-color: #61dafb;
+}
+button{
+  background-color:aliceblue;
+  border-radius: 5px;
+  border-color: #61dafb;
+}
+input{
+  border-radius: 3px;
+  border-color: #61dafb;
+}
+button:hover{
+  cursor: pointer;
+}
