@@ -1,51 +1,22 @@
 import React  from 'react';
-import {nanoid} from 'nanoid'
+import { useDispatch} from 'react-redux'
+import { addTodo} from '../actions/index';
+const Form = () => {
 
-const Form = ({input, setInput, todos, setTodos, editTodo, setEditTodo}) => {
-
-    const updateTodo = (title, id, completed) => {
-        const newTodo = todos.map((todo) => 
-            todo.id === id ? {title, id, completed} : todo 
-        );
-        setTodos(newTodo);
-        setEditTodo('');
-    };
-    React.useEffect(() => {
-        if(editTodo){
-            setInput(editTodo.title);
-        }else{
-            setInput("");
-        }
-    }, [setInput, editTodo]);
-
-  const onInputChange = (e) => {
-      setInput(e.target.value)
-  }
-
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    if(!editTodo){
-    setTodos([...todos, {id:nanoid(), title: input}]);
-    setInput("");
-    }
-    else{
-        updateTodo(input, editTodo.id , editTodo.completed)
-    }
-}
-  
+    const [input,setInput]=React.useState("")
+    const dispatch=useDispatch()
     return (
-    <form onSubmit={onFormSubmit}>
+    <div>
         <input type='test' 
         placeholder='Enter a Todo...' 
         className='text-input' 
         value={input}
-        required
-        onChange={onInputChange}
+        onChange={e => setInput(e.target.value)}
         />
-        <button className='button-add' type='submit'>
-            {editTodo ? "OK" : "ADD"}
+        <button className='button-add' onClick={()=>dispatch(addTodo(input),setInput(''))}>
+            ADD
         </button>
-    </form>
+    </div>
   )
 }
 
