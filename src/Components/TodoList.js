@@ -2,7 +2,7 @@ import React from 'react'
 import TodoItem from './TodoItem'
 import {useSelector} from 'react-redux'
 function TodoList() {
-    let todos=useSelector(state=>state.todoReducer.list)
+  let todos=useSelector(state=>state.todoReducer.list)
   return (
     <div>
         {todos.map((todo)=>{

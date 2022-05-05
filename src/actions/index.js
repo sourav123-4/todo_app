@@ -1,4 +1,3 @@
-import React from 'react'
 import {nanoid} from 'nanoid' 
 
 export const addTodo = (data) => {
@@ -12,7 +11,7 @@ export const addTodo = (data) => {
 }
 export const DeleteTodo=(id)=>{
     return {
-        type : "dELETE_TODO",
+        type : "DELETE_TODO",
         payload:id
     }
 }

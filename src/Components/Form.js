@@ -2,7 +2,6 @@ import React  from 'react';
 import { useDispatch} from 'react-redux'
 import { addTodo} from '../actions/index';
 const Form = () => {
-
     const [input,setInput]=React.useState("")
     const dispatch=useDispatch()
     return (

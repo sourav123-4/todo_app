@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React from 'react';
 import '../App.css'
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { EditTodo,DeleteTodo } from '../actions/index';
 const TodoItem = ({todo}) => {
     const [editTodo,setEditTodo]=React.useState(todo.data)
@@ -19,21 +19,28 @@ const TodoItem = ({todo}) => {
                    }
                    />
                    :<h4>{todo.data}</h4>}
-                   <button className='btn-edit' 
+                   {!isEditing && 
+                       <button className='btn-edit' 
+                        onClick={()=>{
+                            if(isEditing){
+                                setEditTodo(todo.data)
+                            }
+                            setIsEditing(!isEditing)
+                            }}>EDIT</button>
+                        }
+                    {isEditing && 
+                        <button className='btn-edit' 
                         onClick={()=>{
                             dispatch(EditTodo({
                                 ...todo,
                                 data:editTodo
                             }))
-                            if(isEditing){
-                                setEditTodo(todo.data)
-                            }
                             setIsEditing(!isEditing)
-                            }}>{isEditing?"UPDATE" : "EDIT"}</button>
-                   <button className='btn-delete' onClick={()=>dispatch(DeleteTodo(todo.id))}>Delete</button>
-               </div>
-            
-              
+                            }}>UPDATE</button>
+                    }
+                   <button className='btn-delete' 
+                        onClick={()=>dispatch(DeleteTodo(todo.id))}>Delete</button>
+               </div> 
         </div>
     )
 }

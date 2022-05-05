@@ -15,7 +15,7 @@ export const todoReducer=(state=initialData,action)=>{
                     }
                 ]
             }
-        case "dELETE_TODO":
+        case "DELETE_TODO":
             const newList=state.list.filter(elem => elem.id !== action.payload)
             return{
                 ...state,
@@ -31,8 +31,7 @@ export const todoReducer=(state=initialData,action)=>{
             return {
                 ...state,
                 list:updateTodo
-            }
-            
+            }  
         default : 
             return state
     }
